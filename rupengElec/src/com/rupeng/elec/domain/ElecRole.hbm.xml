@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+    
+    <hibernate-mapping>
+    	<class name="com.rupeng.elec.domain.ElecRole" table="elecRole">
+    		<!-- 配置唯一标识 -->
+    		<id name="roleId" column="roleId">
+    			<!-- 配置主键生成器 -->
+    			<generator class="uuid"></generator>
+    		</id>
+    		
+    		<!-- 配置普通属性 -->
+    		<property name="roleName" column="roleName"></property>
+    		
+    		<!-- 只在role端配置关联关系 -->
+    		<set name="functions" table="elecRoleFunction" lazy="false">
+    			<!-- key的column属性为中间表中与本方表关联的外键 -->
+    			<key column="roleId"></key>
+    			<!-- many-to-many中的column属性为中间表中与另一个多方表关联的外键 
+    				class属性为多方表对应的javabean
+    			-->
+    			<many-to-many column="functionId" class="com.rupeng.elec.domain.ElecFunction"></many-to-many>
+    		</set>
+    	</class>
+    	
+    	
+    	
+    </hibernate-mapping>

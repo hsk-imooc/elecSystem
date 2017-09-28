@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context.xsd
+	http://www.springframework.org/schema/aop
+	http://www.springframework.org/schema/aop/spring-aop.xsd
+	http://www.springframework.org/schema/tx 
+	http://www.springframework.org/schema/tx/spring-tx.xsd">
+	
+		<!-- ==================配置action================== -->
+		<bean id="textAction" class="com.rupeng.elec.web.action.ElecTextAction" scope="prototype">
+			<property name="textService" ref="textService"></property>
+		</bean>
+		
+		<!-- ElecMenuAction -->
+		<bean id="menuAction" class="com.rupeng.elec.web.action.ElecMenuAction" scope="prototype"></bean>
+		
+		<!-- elecMatterAction -->
+		<bean id="matterAction" class="com.rupeng.elec.web.action.ElecMatterAction" scope="prototype">
+			<property name="matterService" ref="matterService"></property>
+		</bean>
+		
+		<!-- elecUserAction -->
+		<bean id="userAction" class="com.rupeng.elec.web.action.ElecUserAction" scope="prototype">
+			<property name="userService" ref="userService"></property>
+		</bean>
+		
+		<!-- checkCodeAction -->
+		<bean id="checkCodeAction" class="com.rupeng.elec.web.action.CheckCodeAction" scope="prototype"></bean>
+		
+		<!-- authAction -->
+		<bean id="authAction" class="com.rupeng.elec.web.action.AuthAction" scope="prototype">
+			<property name="userService" ref="userService"></property>
+			<property name="roleService" ref="roleService"></property>
+			<property name="functionService" ref="functionService"></property>
+		</bean>
+		
+		<!-- 流程定义action -->
+		<bean id="processDefinitionAction" class="com.rupeng.elec.web.action.ElecProcessDefinitionAction" scope="prototype">
+			<property name="jbpmService" ref="jbpmService"></property>
+		</bean>
+		
+		<!-- 申请模板action -->
+		<bean id="applyTemplateAction"  class="com.rupeng.elec.web.action.ElecApplyTemplateAction" scope="prototype">
+			<property name="jbpmService" ref="jbpmService"></property>
+		</bean>
+		
+		<!-- applyAction -->
+		<bean id="applyAction" class="com.rupeng.elec.web.action.ElecApplyAction" scope="prototype">
+			<property name="jbpmService" ref="jbpmService"></property>
+		</bean>
+		
+		<!-- taskAction -->
+		<bean id="taskAction" class="com.rupeng.elec.web.action.ElecTaskAction" scope="prototype">
+			<property name="jbpmService" ref="jbpmService"></property>
+		</bean>
+	</beans>
+	

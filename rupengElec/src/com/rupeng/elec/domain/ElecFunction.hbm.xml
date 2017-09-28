@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+    
+    <hibernate-mapping>
+    	<class name="com.rupeng.elec.domain.ElecFunction" table="elecFunction">
+    		<!-- 配置唯一标识 -->
+    		<id name="functionId" column="functionId">
+    			<!-- 配置主键生成器 -->
+    			<generator class="uuid"></generator>
+    		</id>
+    		
+    		<!-- 配置普通属性 -->
+    		<property name="functionName" column="functionName"></property>
+    		<property name="path" column="path"></property>
+    		<property name="groups" column="groups"></property>
+    	</class>
+    </hibernate-mapping>

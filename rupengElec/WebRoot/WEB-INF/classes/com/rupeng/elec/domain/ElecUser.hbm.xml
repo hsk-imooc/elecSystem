@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+    
+    <hibernate-mapping>
+    	<class name="com.rupeng.elec.domain.ElecUser" table="elecUser">
+    		<id name="userId" column="userId">
+    			<generator class="uuid"></generator>
+    		</id>
+    		
+    		<property name="account" column="account"></property>
+    		<property name="password" column="password"></property>
+    		<property name="username" column="username"></property>
+    		<property name="gender" column="gender"></property>
+    		<property name="birthday" column="birthday"></property>
+    		<property name="address" column="address"></property>
+    		<property name="homeTel" column="homeTel"></property>
+    		<property name="phone" column="phone"></property>
+    		<property name="email" column="email"></property>
+    		<property name="isDuty" column="isDuty"></property>
+    		<property name="units" column="units"></property>
+    		<property name="onDutyDate" column="onDutyDate"></property>
+    		<property name="offDutyDate" column="offDutyDate"></property>
+    		<property name="comment" column="comment"></property>
+    		<property name="createUser" column="createUser"></property>
+    		<property name="createDate" column="createDate"></property>
+    		<property name="lastUpdateUser" column="lastUpdateUser"></property>
+    		<property name="lastUpdateDate" column="lastUpdateDate"></property>
+    		<property name="isDelete" column="isDelete"></property>
+    		
+    		<!-- 只在user端配置关联关系 -->
+    		<!-- table属性为user和role的中间表 -->
+    		<set name="roles" table="elecUserRole" lazy="false">
+    			<!-- key属性为中间表中和user表关联的外键 -->
+    			<key column="userId"></key>
+    			<!-- many-to-many的column属性为中间表中与另一个多方相关联的外键 -->
+    			<many-to-many column="roleId" class="com.rupeng.elec.domain.ElecRole"></many-to-many>
+    		</set>
+    	</class>
+    </hibernate-mapping>

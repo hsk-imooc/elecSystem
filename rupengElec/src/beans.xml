@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context.xsd
+	http://www.springframework.org/schema/aop
+	http://www.springframework.org/schema/aop/spring-aop.xsd
+	http://www.springframework.org/schema/tx 
+	http://www.springframework.org/schema/tx/spring-tx.xsd">
+	
+	<!-- 测试用！！！ -->
+	<bean name="elecText" class="com.rupeng.elec.domain.ElecText">
+		<property name="textName" value="springTest"></property>
+	</bean>
+	
+	
+	<!-- 配置C3P0连接池 -->
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+		<property name="driverClass" value="com.mysql.jdbc.Driver"/>
+		<property name="jdbcUrl" value="jdbc:mysql://localhost:3306/rupengElec"/>
+		<property name="user" value="root"/>
+		<property name="password" value="root"/>
+		
+		<property name="initialPoolSize" value="5"/>
+		<property name="maxPoolSize" value="30"/>
+		<property name="minPoolSize" value="5"/>
+	</bean>
+	
+	<!-- 配置sessionFactory -->
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<!-- 注入连接池 -->
+		<property name="dataSource" ref="dataSource"></property>
+		<!-- 引入hibernate核心配置文件 -->
+		<property name="configLocation" value="classpath:/hibernate.cfg.xml"></property>
+	</bean>
+	
+	<!-- 配置hibernate模板 -->
+	<bean id="hibernateTemplate" class="org.springframework.orm.hibernate3.HibernateTemplate">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	<!-- 配置事务管理器 -->
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource"></property>
+	</bean>
+	
+	<!-- 开启注解的事务管理 -->
+	<tx:annotation-driven transaction-manager="transactionManager"/>
+	
+	<import resource="config/beans-dao.xml"/>
+	<import resource="config/beans-service.xml"/>
+	<import resource="config/beans-action.xml"/>
+	
+	<!-- spring整合jbpm -->
+	<bean id="springHelper" class="org.jbpm.pvm.internal.processengine.SpringHelper">
+		<!-- 使得jbpm.cfg.xml配置文件生效 -->
+		<property name="jbpmCfg" value="jbpm.cfg.xml"></property>
+	</bean>
+	<!-- processEngine对象是进行jbpm编程的入口 -->
+	<bean id="processEngine" factory-bean="springHelper" factory-method="createProcessEngine"></bean>
+</beans>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+    
+    <hibernate-mapping>
+    	<class name="com.rupeng.elec.domain.ElecText" table="electext">
+    		<!-- 配置唯一标识 -->
+    		<id name="textId" column="textId">
+    			<!-- 配置主键生成器 -->
+    			<generator class="uuid"></generator>
+    		</id>
+    		
+    		<!-- 配置普通属性 -->
+    		<property name="textName" column="textName"></property>
+    		<property name="textDate" column="textDate"></property>
+    		<property name="textComment" column="textComment"></property>
+    	</class>
+    </hibernate-mapping>

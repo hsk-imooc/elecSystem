@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+    
+    <hibernate-mapping>
+    	<class name="com.rupeng.elec.domain.ElecApply" table="ElecApply">
+    		<id name="applyId" column="applyId">
+    			<generator class="uuid"></generator>
+    		</id>
+    		
+    		<property name="userId" column="userId"></property>
+    		<property name="username" column="username"></property>
+    		<property name="account" column="account"></property>
+    		
+    		<property name="processDefinitionId" column="processDefinitionId"></property>
+    		<property name="processDefinitionKey" column="processDefinitionKey"></property>
+
+			<property name="applyTime" column="applyTime"></property>
+			<property name="applyStatus" column="applyStatus"></property>
+			
+			<property name="filename" column="filename"></property>
+			<property name="path" column="path"></property>			
+    	</class>
+    </hibernate-mapping>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+    
+    <hibernate-mapping>
+    	<class name="com.rupeng.elec.domain.ElecMatter" table="elecMatter">
+    		<!-- 配置唯一标识 -->
+    		<id name="matterId" column="matterId">
+    			<!-- 配置主键生成器 -->
+    			<generator class="uuid"></generator>
+    		</id>
+    		
+    		<!-- 配置普通属性 -->
+    		<property name="stationRunStatus" column="stationRunStatus"></property>
+    		<property name="devRunStatus" column="devRunStatus"></property>
+    		<property name="createDate" column="createDate"></property>
+    	</class>
+    </hibernate-mapping>
