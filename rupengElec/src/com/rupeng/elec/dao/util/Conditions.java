@@ -19,7 +19,7 @@ public class Conditions {
 	private List<OrderBy> orderByList = new ArrayList<OrderBy>();
 
 	/**
-	 * 分装排序条件
+	 * 封装排序条件
 	 * 
 	 * @author LeeGossHK
 	 * 
